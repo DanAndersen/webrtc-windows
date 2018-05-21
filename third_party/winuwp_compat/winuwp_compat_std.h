@@ -34,7 +34,7 @@ namespace webrtc
 {
   namespace TickTime
   {
-  	inline void DisableFakeClock() {}
+    inline void DisableFakeClock() {}
   }
 }
 #endif /* __cplusplus */
@@ -47,20 +47,20 @@ namespace webrtc
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
-#if (WDK_NTDDI_VERSION < NTDDI_WIN10_RS4)
 char *winuwpGetEnv(
    const char *varname   
 );
 
 inline char *getenv(const char *varname)
 {
-	return winuwpGetEnv(varname);
+  return winuwpGetEnv(varname);
 }
 
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
+
 errno_t winuwpDupEnv(
    char **buffer,  
    size_t *numberOfElements,  
@@ -75,6 +75,7 @@ inline errno_t _dupenv_s(
 {
   return winuwpDupEnv(buffer, numberOfElements, varname);
 }
+
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
@@ -91,7 +92,7 @@ inline int _wputenv(const wchar_t *envstring)
 {
   return winuwpPutEvnW(envstring);
 }
-#endif //(WDK_NTDDI_VERSION < NTDDI_WIN10_RS4)
+
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
@@ -99,11 +100,11 @@ inline int _wputenv(const wchar_t *envstring)
 char *winuwpGetCwd(char *buf, size_t size);
 
 inline char *getcwd(
-	char *buf,
-	size_t size
+  char *buf,
+  size_t size
 )
 {
-	return winuwpGetCwd(buf, size);
+  return winuwpGetCwd(buf, size);
 }
 
 /* ------------------------------------------------------------------------- */
