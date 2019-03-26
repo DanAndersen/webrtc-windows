@@ -262,11 +262,12 @@ namespace Org {
 			/// <param name="pixelAspect">Sets the shape of a pixel. Some codecs, such as H.264, support
 			/// non-square pixels. Codecs that support only square pixes, such as VPx, will force a 1:1 ratio.</param>
 			CaptureCapability(unsigned int width, unsigned int height,
-				unsigned int fps,
+				unsigned int fps, bool mrcEnabled,
 				Windows::Media::MediaProperties::MediaRatio^ pixelAspect) {
 				_width = width;
 				_height = height;
 				_fps = fps;
+				_mrcEnabled = mrcEnabled;
 				_pixelAspectRatio = pixelAspect;
 				wchar_t resolutionDesc[64];
 				swprintf_s(resolutionDesc, 64, L"%u x %u",
@@ -301,6 +302,14 @@ namespace Org {
 			property unsigned int FrameRate {
 				unsigned int get() {
 					return _fps;
+				}
+			}
+			/// <summary>
+			/// Gets a flag about Mixed Reality Capture status on HoloLens device.
+			/// </summary>
+			property bool MrcEnabled {
+				bool get() {
+					return _mrcEnabled;
 				}
 			}
 			/// <summary>
@@ -343,6 +352,7 @@ namespace Org {
 			unsigned int _width;
 			unsigned int _height;
 			unsigned int _fps;
+			bool _mrcEnabled;
 			Windows::Media::MediaProperties::MediaRatio^ _pixelAspectRatio;
 			String^ _resolutionDescription;
 			String^ _fpsDescription;

@@ -528,6 +528,7 @@ namespace Org {
 							constraints.SetMandatory(webrtc::MediaConstraintsInterface::kMaxWidth, globals::gPreferredVideoCaptureFormat.width);
 							constraints.SetMandatory(webrtc::MediaConstraintsInterface::kMaxHeight, globals::gPreferredVideoCaptureFormat.height);
 							constraints.SetMandatoryMaxFrameRate(cricket::VideoFormat::IntervalToFps(globals::gPreferredVideoCaptureFormat.interval));
+							constraints.SetMandatory(webrtc::MediaConstraintsInterface::kEnableMrc, globals::gPreferredVideoCaptureFormat.mrcEnabled);
 
 							LOG(LS_INFO) << "Creating video track.";
 							rtc::scoped_refptr<webrtc::VideoTrackInterface> video_track(
@@ -740,7 +741,7 @@ namespace Org {
 					}
 					auto cap = ref new CaptureCapability(videoProp->Width, videoProp->Height,
 						videoProp->FrameRate->Numerator / videoProp->FrameRate->Denominator,
-						videoProp->PixelAspectRatio);
+						false, videoProp->PixelAspectRatio);
 					if (descSet.find(cap->FullDescription->Data()) == descSet.end()) {
 						ret->Append(cap);
 						descSet.insert(cap->FullDescription->Data());
